@@ -1,10 +1,6 @@
 'use strict';
 
-var Mallet = require('mallet');
-
-var malletOptions = {
-  recognizers: [[Mallet.Tap]]
-};
+var Mallet;
 
 var supportedEvents = ['tap'];
 
@@ -26,8 +22,15 @@ var build = function () {
 
       if (handler) {
         if (!mallet) {
+          // Only require mallet here, so that the module works in Node.
+          if (!Mallet) {
+            Mallet = require('mallet');
+          }
+
           mallet = component.mallet =
-            new Mallet(component.getDOMNode(), malletOptions);
+            new Mallet(component.getDOMNode(), {
+              recognizers: [[Mallet.Tap]]
+            });
         }
 
         mallet.on(eventName, handler);
