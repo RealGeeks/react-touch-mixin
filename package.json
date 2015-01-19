@@ -1,6 +1,6 @@
 {
   "name": "react-touch-mixin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mixin to enable touch interactions in React components.",
   "files": [
     "index.js"
